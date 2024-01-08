@@ -1,0 +1,12 @@
+[submodule "modules/common-module"]
+	path = modules/common-module
+	url = https://github.com/vanhuy2612/nestjs-common-module
+	branch = main
+[submodule "modules/app-module"]
+	path = modules/app-module
+	url = https://github.com/vanhuy2612/nestjs-app-module
+	branch = main
+[submodule "modules/ws-module"]
+	path = modules/ws-module
+	url = https://github.com/vanhuy2612/nestjs-ws-module
+	branch = main

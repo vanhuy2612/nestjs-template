@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"
+        integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs"
+        crossorigin="anonymous"></script>
+    <script>
+        const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJuYW10aDEiLCJyb2xlcyI6W10sImlzcyI6Inh4eCIsImlhdCI6MTY5NTc5ODcxMiwiZXhwIjoxNjk1ODAyMzEyLCJwYXlsb2FkIjp7Imd1aWQiOjI4MTAsImZpcnN0X25hbWUiOiJUcmluaCIsImxhc3RfbmFtZSI6IkhvYWkgTmFtIiwiZnVsbG5hbWUiOiJUcmluaCBIb2FpIE5hbSIsInVzZXJuYW1lIjoibmFtdGgxIiwiZW1haWwiOiJob2FpbmFtQGdtYWlsLmNvbSIsImJpcnRoZGF0ZSI6IjI0LzA3LzIwMjMiLCJnZW5kZXIiOiJtYWxlIiwiaWNvbiI6eyJ0b3BiYXIiOiJodHRwOi8vb3Nzbi5rYnNlYy5jb20udm46OTAyMC9hdmF0YXIvbmFtdGgxL3RvcGJhci8wM2M3NjdiYzFkM2RkODI1NGFjOGM1NDY4MGFkYjRhZC5qcGVnP29zc25fY2FjaGU9NmZiN2U0NTQiLCJzbWFsbGVyIjoiaHR0cDovL29zc24ua2JzZWMuY29tLnZuOjkwMjAvYXZhdGFyL25hbXRoMS9zbWFsbGVyLzQ3ZmY3YjAzYTcyYjcyYmUyNDU1YTA4ZDM0ODgwNTA2LmpwZWc_b3Nzbl9jYWNoZT02ZmI3ZTQ1NCIsInNtYWxsIjoiaHR0cDovL29zc24ua2JzZWMuY29tLnZuOjkwMjAvYXZhdGFyL25hbXRoMS9zbWFsbC8wOTI3NGQ0Y2M0MzQ1YjdhZDVlODMxMjRkODcyYmU1Yy5qcGVnP29zc25fY2FjaGU9NmZiN2U0NTQiLCJsYXJnZXIiOiJodHRwOi8vb3Nzbi5rYnNlYy5jb20udm46OTAyMC9hdmF0YXIvbmFtdGgxL2xhcmdlci9jYWRhMWE2NTNiNTdkMGNkNzRkOGM2N2FmNmY3NzY1OC5qcGVnP29zc25fY2FjaGU9NmZiN2U0NTQiLCJsYXJnZSI6Imh0dHA6Ly9vc3NuLmtic2VjLmNvbS52bjo5MDIwL2F2YXRhci9uYW10aDEvbGFyZ2UvZWZiMTBiMzllMWFmZDQ2ZmMzODUwYzhiNDQ0ZDVkY2UuanBlZz9vc3NuX2NhY2hlPTZmYjdlNDU0In0sImNvdmVyX3VybCI6ZmFsc2UsImxhbmd1YWdlIjpudWxsfX0.d5mrnpQRWfujSIiwkj8f75eS4C5EK44gZtrM-pCcm7o`;
+        const socket = io('', {
+            transports: ["websocket"],
+        });
+        socket.on('connect', function () {
+            console.log('Connected');
+        });
+        socket.on('pong', function (data) {
+            console.log('event', data);
+        });
+        socket.on('disconnect', function () {
+            console.log('Disconnected');
+        });
+
+        const onClick = () => {
+            socket.emit('connected', { data: 'data' }, res => {
+                console.log("res", res);
+            });
+        }
+        const onTyping = () => {
+            socket.emit('ping', {
+
+            }, res => {
+                console.log('Online response', res);
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="onClick()">Click to init room chat</button>
+    <button onclick="onTyping()">Click me</button>
+</body>
+
+</html>
