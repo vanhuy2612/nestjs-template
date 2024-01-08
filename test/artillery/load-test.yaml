@@ -1,0 +1,15 @@
+# simple-socketio-load-test.yaml
+config:
+  target: "http://localhost:3000"
+  socketio:
+    transports: ["websocket"]
+  phases:
+    - duration: 600
+      arrivalRate: 5
+scenarios:
+  - name: "Emit an event"
+    engine: socketio
+    flow:
+      - emit:
+          - "ping" # your channel
+          - "Hello from Artillery"
